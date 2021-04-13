@@ -13,8 +13,6 @@ jobs:
     - name: send-card
       run: |
           sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-          yum install -y ntp
-          ntpdate us.pool.ntp.org
           date=$(date +"%Y-%m-%d")
           callback=$(curl -d "rq=${date}&phone=&tw=正常（36.1-37.3℃）&mrzctw=正常（36.1-37.3℃）&znl=浙江省宁波市鄞州区曙光北路120号&jrqk=正常&jrqk1=0&jrqk2&jrqk3&jcjwry=没有&sfyjkm=绿码&jcxgfyry=没有&qgyy=没有&qgyynr&lx=1&shen=浙江省&shi=宁波市&qu=鄞州区&zsbdk=0&kfsj=中午&zzdx=没有上述情况" -X POST http://fk.nbcc.cn/fxsq/mrdk/save.htm)
           echo curl -d "rq=${date}&phone=&tw=正常（36.1-37.3℃）&mrzctw=正常（36.1-37.3℃）&znl=浙江省宁波市鄞州区曙光北路120号&jrqk=正常&jrqk1=0&jrqk2&jrqk3&jcjwry=没有&sfyjkm=绿码&jcxgfyry=没有&qgyy=没有&qgyynr&lx=1&shen=浙江省&shi=宁波市&qu=鄞州区&zsbdk=0&kfsj=中午&zzdx=没有上述情况" -X POST http://fk.nbcc.cn/fxsq/mrdk/save.htm
