@@ -9,19 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest  
     steps:
-    - name: Set up Go 1.12
-      uses: actions/setup-go@v1
-      with:
-        go-version: 1.12
-      id: go
-    - name: Set GOPATH
-      run: |
-        echo "##[set-env name=date;]$(date +%Y%m%d)"
-        echo "##[set-env name=NAME;]$(date +%Y%m%d)"
-      shell: bash
-      
+    - name: 'Get Date'
+      run: echo "REPORT_DATE=$(date '+%Y-%m-%d %T')" >> $GITHUB_ENV
     - uses: actions/checkout@v1
     - name: send-card
       uses: wei/curl@v1
       with:
-        args: -X POST http://fk.nbcc.cn/fxsq/mrdk/save.htm
+        args: -d "rq=${{env.REPORT_DATE}}&phone=&tw=正常（36.1-37.3℃）&mrzctw=正常（36.1-37.3℃）&znl=浙江省宁波市鄞州区曙光北路120号&jrqk=正常&jrqk1=0&jrqk2&jrqk3&jcjwry=没有&sfyjkm=绿码&jcxgfyry=没有&qgyy=没有&qgyynr&lx=1&shen=浙江省&shi=宁波市&qu=鄞州区&zsbdk=0&kfsj=中午&zzdx=没有上述情况" -X POST http://fk.nbcc.cn/fxsq/mrdk/save.htm
